@@ -1,0 +1,23 @@
+[package]
+name = "winit-metal-repro"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+block = { version = "0.1.6", default-features = false }
+cocoa = { version = "0.25.0", default-features = false }
+cocoa-foundation = { version = "0.1.2", default-features = false }
+core-graphics-types = { version = "0.1.3", default-features = false }
+crossbeam = { version = "0.8", default-features = false, features = ["crossbeam-channel", "std"] }
+crossbeam-channel = { version = "0.5", default-features = false, features = ["std"] }
+foreign-types = { version = "0.5", default-features = false }
+foreign-types-shared = { version = "0.3.1", default-features = false }
+glam = { version = "0.25", default-features = false, features = ["bytecheck", "bytemuck", "mint", "rand", "rkyv", "serde"] }
+metal = { version = "0.27.0", default-features = false, features = ["link", "dispatch"] }
+objc = { version = "0.2.7", default-features = false }
+once_cell = "1.19.0"
+raw-window-handle = { version = "0.5", default-features = false }
+rkyv = { version = "0.7", default-features = false, features = ["size_64", "std", "validation"] }
+winit = { version = "0.29", default-features = false, features = ["wayland", "wayland-dlopen", "x11", "rwh_05"] }
