@@ -70,7 +70,7 @@ impl<ThreadResult: Send + 'static> RenderLoop<ThreadResult> {
         );
         let window = Arc::new(
             WindowBuilder::new()
-                .with_title("")
+                .with_title(self.create_desc.window_title)
                 .with_inner_size(window_size)
                 .build(&event_loop)
                 .unwrap(),

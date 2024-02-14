@@ -27,8 +27,6 @@ impl EventSource {
     pub fn recv(&mut self, device: &Arc<metal::Device>) -> Result<EventSourceEvent, Disconnected> {
         let event = self.event_recv.recv().map_err(|_recv_error| Disconnected)?;
 
-        dbg!(&event);
-
         Ok(match event {
             Event::WindowEvent { event, .. } => match event {
                 event::WindowEvent::Resized(..) => {
