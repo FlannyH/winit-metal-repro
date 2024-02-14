@@ -20,7 +20,7 @@ pub enum EventSourceEvent {
 pub struct EventSource {
     pub event_recv: Receiver<event::Event<()>>,
     pub early_window_data: Arc<OnceCell<EarlyWindowData>>,
-    pub swapchain: Option<Box<Swapchain>>,
+    pub swapchain: Option<Arc<Swapchain>>,
 }
 
 impl EventSource {
@@ -56,7 +56,7 @@ impl EventSource {
                     self.swapchain.is_none(),
                     "Unbalanced Resumed event, app is already running"
                 );
-                self.swapchain = Some(Box::new(Swapchain::new(
+                self.swapchain = Some(Arc::new(Swapchain::new(
                     &device,
                     window.as_ref(),
                     size.width.into(),
@@ -64,11 +64,7 @@ impl EventSource {
                 )));
                 EventSourceEvent::Event(event)
             }
-            Event::AboutToWait => {
-                // get next drawable
-                // return render command
-                todo!()
-            }
+            Event::AboutToWait => EventSourceEvent::Render(self.swapchain.clone()),
             x => EventSourceEvent::Event(x),
         })
     }
